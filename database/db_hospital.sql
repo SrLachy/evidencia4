@@ -26,7 +26,7 @@ CREATE TABLE CamaHospitalaria (
     FOREIGN KEY (id_paciente) REFERENCES Paciente(id_paciente)
 );
 
--- INCERTANDO DATOS DE EJEMPLOS:
+-- INSERTANDO DATOS DE EJEMPLOS:
 
 -- En la tabla Sala:
 INSERT INTO Sala (nombre_sala) VALUES ('Sala A');
