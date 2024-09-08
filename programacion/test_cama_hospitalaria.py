@@ -1,7 +1,9 @@
 import unittest
+
 from cama_hospitalaria import CamaHospitalaria
 
 class test_CamaHospitalaria (unittest.TestCase):
+    
     def setUp(self):
         self.cama = CamaHospitalaria (id_cama = 1, peso_paciente = 180)
     
@@ -9,13 +11,17 @@ class test_CamaHospitalaria (unittest.TestCase):
         self.cama.ajustar_respaldo (30)
         self.assertEqual (self.cama.inclinacion_respaldo, 30)
         with self.assertRaises (ValueError):
-            self.cama.ajustar_respaldo (100) # está fuera del rango permitido.
+            self.cama.ajustar_respaldo (100) # Fuera del rango permitido.
     
     def test_verificar_peso (self):
         self.assertEqual (self.cama.verificar_peso(), 'El peso del paciente está dentro del rango seguro.')
         self.cama.peso_paciente = 210
         self.assertEqual (self.cama.verificar_peso (), 'Alerta: El peso del paciente sobrepasa el límite máximo de la cama.')
         
+    def test_peso_paciente_invalido (self):
+        with self.assertRaises(ValueError):
+            self.cama.peso_paciente = -10
+    
     def test_marcar_disponibilidad (self):
         self.cama.marcar_disponibilidad ()
         self.assertTrue (self.cama.disponibilidad)
